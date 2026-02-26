@@ -1,0 +1,25 @@
+@model IEnumerable<Proyecto.Models.Receta>
+
+<h1>Recetario de la Comunidad</h1>
+
+<p><a asp-action="Create" class="btn btn-success">Nueva Receta</a></p>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                @if (!string.IsNullOrEmpty(item.ImagenUrl))
+                {
+                    <img src="@item.ImagenUrl" class="card-img-top" style="height: 200px; object-fit: cover;">
+                }
+                <div class="card-body">
+                    <h5 class="card-title">@item.Titulo</h5>
+                    <p class="card-text">@item.Descripcion</p>
+                    <p><strong>Tiempo:</strong> @item.TiempoCoccion min</p>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Ver detalle</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
